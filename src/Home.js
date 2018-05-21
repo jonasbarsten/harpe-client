@@ -22,11 +22,7 @@ class Home extends Component {
 
   restartServer() {
     socket.emit('restart');
-  }
-
-  // oscSend(address, value) {
-  //   socket.emit('oscSend', address, value);
-  // }
+  }s
 
   componentDidMount() {
     socket.on("FromAPI", data => this.setState({ response: data }));

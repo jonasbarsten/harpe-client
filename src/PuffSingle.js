@@ -73,7 +73,6 @@ class PuffSingle extends Component {
 				</Container>
 				<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('allOn', ["0"])}>All on</Button>
 				<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('allOff', ["0"])}>All off</Button>
-				<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('rotatePuffDiagonally', ["0", 1])}>Diagonal</Button>
 				<Button color="danger" size="lg" block  onClick={() => this.restartPuff()}>Restart puff</Button>
 				<Button color="primary" size="lg" block  onClick={() => this.updatePuff()}>Update puff</Button>
 			</div>
