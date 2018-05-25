@@ -53,8 +53,6 @@ class PuffSingle extends Component {
 		const hostName = response.hostName;
 		let lastSeen = '';
 
-		console.log(response);
-
 		if (response.neighbours) {
 			response.neighbours.map((puff) => {
 				if (puff.ip === this.props.match.params.id) {
@@ -72,7 +70,7 @@ class PuffSingle extends Component {
 							<Button outline color="secondary" onClick={() => this.props.history.push("/")} style={{marginBottom: "8px"}}>Home</Button>
 						</Col>
 						<Col>
-							<div className="text-right"><Badge color="success">{hostName} fest fest</Badge></div>
+							<div className="text-right"><Badge color="success">{hostName}</Badge></div>
 						</Col>
 						<Col>
 							<div className="text-right">Last seen <Badge color="primary">{lastSeen}</Badge></div>
