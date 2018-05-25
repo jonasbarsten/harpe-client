@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
-import { CardDeck } from 'reactstrap';
+import { CardDeck, Button, Row, Col, Container } from 'reactstrap';
 
 import PuffCard from './PuffCard.js';
 
@@ -22,7 +22,11 @@ class Home extends Component {
 
   restartServer() {
     socket.emit('restart');
-  }s
+  }
+
+  updateAll() {
+    socket.emit('updateAll');
+  }
 
   componentDidMount() {
     socket.on("FromAPI", data => this.setState({ response: data }));
@@ -39,15 +43,23 @@ class Home extends Component {
 
     return (
       <div className="Home">
-        <CardDeck>
-        {
-          response.neighbours.map((puff) => {
-            return (
-              <PuffCard key={puff.ip} puff={puff} childProps={this.props}/>
-            );
-          })
-        }
-        </CardDeck>
+        <Container>
+          <Row>
+            <Col>
+              <Button onClick={() => {this.updateAll();}} color="primary" size="lg" block>Update all</Button>
+            </Col>
+          </Row>
+          <br />
+          <CardDeck>
+          {
+            response.neighbours.map((puff) => {
+              return (
+                <PuffCard key={puff.ip} puff={puff} childProps={this.props}/>
+              );
+            })
+          }
+          </CardDeck>
+        </Container>
       </div>
     );
   }
