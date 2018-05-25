@@ -41,7 +41,7 @@ class Home extends Component {
       <div className="Home">
         <CardDeck>
         {
-          response.map((puff) => {
+          response.neighbours.map((puff) => {
             return (
               <PuffCard key={puff.ip} puff={puff} childProps={this.props}/>
             );

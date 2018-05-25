@@ -48,16 +48,19 @@ class PuffSingle extends Component {
 			return (
 				<div>Loading ...</div>
 			);
-		}
+		};
 
+		const hostName = response.hostName;
 		let lastSeen = '';
 
-		response.map((puff) => {
+		response.neighbours.map((puff) => {
 			if (puff.ip === this.props.match.params.id) {
 				lastSeen = moment(puff.lastSeen).format('HH:mm:ss');
 			};
 			return null;
 		});
+
+
 
 		return (
 			<div className="PuffSingle">
@@ -65,6 +68,9 @@ class PuffSingle extends Component {
 					<Row>
 						<Col>
 							<Button outline color="secondary" onClick={() => this.props.history.push("/")} style={{marginBottom: "8px"}}>Home</Button>
+						</Col>
+						<Col>
+							<div className="text-right"><Badge color="success">{hostName}</Badge></div>
 						</Col>
 						<Col>
 							<div className="text-right">Last seen <Badge color="primary">{lastSeen}</Badge></div>
