@@ -41,12 +41,14 @@ class Home extends Component {
       );
     }
 
+    const numberOfNeighbours = response.neighbours.length;
+
     return (
       <div className="Home">
         <Container>
           <Row>
             <Col>
-              <Button onClick={() => {this.updateAll();}} color="primary" size="lg" block>Update all</Button>
+              <Button onClick={() => {this.updateAll();}} color="primary" size="lg" block>Update all {numberOfNeighbours} puffz</Button>
             </Col>
           </Row>
           <br />
