@@ -50,6 +50,8 @@ class PuffSingle extends Component {
 			);
 		};
 
+		console.log(response);
+
 		const hostName = response.hostName;
 		let lastSeen = '';
 
