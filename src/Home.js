@@ -37,7 +37,7 @@ class Home extends Component {
 
     if (!response) {
       return (
-        <div><h1>No puffz or loading ...</h1></div>
+        <div><h1>No harps or loading ...</h1></div>
       );
     }
 
