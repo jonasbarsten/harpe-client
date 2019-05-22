@@ -48,7 +48,7 @@ class Home extends Component {
         <Container>
           <Row>
             <Col>
-              <Button onClick={() => {this.updateAll();}} color="primary" size="lg" block>Update all {numberOfNeighbours} puffz</Button>
+              <Button onClick={() => {this.updateAll();}} color="primary" size="lg" block>Update all {numberOfNeighbours} harps</Button>
             </Col>
           </Row>
           <br />
