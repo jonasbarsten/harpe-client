@@ -127,7 +127,7 @@ class PuffSingle extends Component {
 					</Row>
 					<Row>
 						<Col>
-							<div style={{textAlign: 'center', marginTop: '10px', marginBottom: '60px'}}>
+							<div style={{textAlign: 'center', marginTop: '60px', marginBottom: '60px'}}>
 								<label>Channel: </label>
 								<input type="number" min="0" max="15" value={this.state.channel} onChange={(e) => this.setState({channel: e.target.value})} style={{width: '50px', marginLeft: '10px'}} />
 							</div>
