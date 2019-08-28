@@ -40,8 +40,8 @@ class PuffSingle extends Component {
 	  this.state.socket.emit('update');
 	}
 
-	pwm() {
-	  this.state.socket.emit('pwm', this.state.channel, this.state.value);
+	pwm(value) {
+	  this.state.socket.emit('pwm', this.state.channel, value);
 	}
 
 	// oscSend(address, value) {
@@ -90,17 +90,19 @@ class PuffSingle extends Component {
 					</Row>
 				</Container>
 				<div style={{height: '200px', textAlign: 'center '}}>
-				  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => {this.setState({value}); this.pwm.bind(this)}} />
+				  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value)} />
 				  <br />
-				  <label>Channel: </label>
-				  <input type="number" value={this.state.channel} onChange={(e) => {console.log(e); this.setState({channel: e.target.value}); this.pwm.bind(this)}} style={{width: '50px', marginLeft: '10px'}} />
-				  <br />
-				  <label>Value: </label> {this.state.value / 1000}
 				</div>
-				<Button color="warning" size="lg" block  onClick={() => this.pwm()}>PWM</Button>
-				<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('allOff', ["0"])}>All off</Button>
-				<Button color="danger" size="lg" block  onClick={() => this.restartPuff()}>Restart puff</Button>
-				<Button color="primary" size="lg" block  onClick={() => this.updatePuff()}>Update puff</Button>
+				<div>
+					<label>Channel: </label>
+					<input type="number" value={this.state.channel} onChange={(e) => this.setState({channel: e.target.value})} style={{width: '50px', marginLeft: '10px'}} />
+				</div>
+				<div>
+					<Button color="warning" size="lg" block  onClick={() => this.pwm()}>PWM</Button>
+					<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('allOff', ["0"])}>All off</Button>
+					<Button color="danger" size="lg" block  onClick={() => this.restartPuff()}>Restart puff</Button>
+					<Button color="primary" size="lg" block  onClick={() => this.updatePuff()}>Update puff</Button>
+				</div>
 			</div>
 		);
 	}
