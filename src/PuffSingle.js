@@ -43,6 +43,7 @@ class PuffSingle extends Component {
 	}
 
 	pwm(value) {
+		this.setState({value: value});
 	  this.state.socket.emit('pwm', this.state.channel, value);
 	}
 
@@ -98,7 +99,7 @@ class PuffSingle extends Component {
 							<div className="text-right">Last seen <Badge color="primary">{lastSeen}</Badge></div>
 						</Col>
 					</Row>
-					<Row>
+					<Row style={{marginTop: '20px'}}>
 						<Col>
 							<div style={{textAlign: 'center'}}>
 								<h2>FADE</h2>
@@ -106,26 +107,27 @@ class PuffSingle extends Component {
 							<div style={{height: '200px', textAlign: 'center'}}>
 							  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value)} />
 							  <br />
+							  <p>{this.state.value}</p>
 							</div>
 						</Col>
 						<Col>
 							<div style={{textAlign: 'center'}}>
 								<h2>HIT</h2>
-								<div style={{marginTop: '45px', textAlign: 'center', width: '100px'}}>
+								<div style={{margin: '45px auto 0 auto', width: '100px'}}>
 									<Button color="primary" size="lg" block onClick={() => this.solenoid()}>BOOM</Button>
 								</div>
 								<br />
 								<label>Duration (ms): </label>
-								<input type="number" min="0" value={this.state.duration} onChange={(e) => this.setState({duration: e.target.value})} style={{width: '100px'}} />
+								<input type="number" min="0" value={this.state.duration} onChange={(e) => this.setState({duration: e.target.value})} style={{width: '100px', marginLeft: '10px'}} />
 								<br />
 								<label>Amount (0-1): </label>
-								<input type="number" step="0.01" min="0" max="1" value={this.state.amount} onChange={(e) => this.setState({amount: e.target.value})} style={{width: '100px'}} />
+								<input type="number" step="0.01" min="0" max="1" value={this.state.amount} onChange={(e) => this.setState({amount: e.target.value})} style={{width: '100px', marginLeft: '10px'}} />
 							</div>
 						</Col>
 					</Row>
 					<Row>
 						<Col>
-							<div style={{textAlign: 'center', marginTop: '10px', marginBottom: '10px'}}>
+							<div style={{textAlign: 'center', marginTop: '10px', marginBottom: '20px'}}>
 								<label>Channel: </label>
 								<input type="number" min="0" max="15" value={this.state.channel} onChange={(e) => this.setState({channel: e.target.value})} style={{width: '50px', marginLeft: '10px'}} />
 							</div>
