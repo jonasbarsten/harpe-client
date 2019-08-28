@@ -10,7 +10,8 @@ import 'rc-slider/assets/index.css';
 class PuffSingle extends Component {
 	state = {
 	  response: false,
-	  socket: null
+	  socket: null,
+	  value: 0
 	}
 
 	componentDidMount() {
@@ -48,7 +49,9 @@ class PuffSingle extends Component {
 
 	render () {
 
-		const { response } = this.state;
+		const { response, value } = this.state;
+
+		console.log(value);
 
 		if (!response) {
 			return (
@@ -86,8 +89,7 @@ class PuffSingle extends Component {
 					</Row>
 				</Container>
 				<div>
-					<Slider />
-					<Range />
+					<Slider onSliderChange={(value) => this.setState({value})} />
 				</div>
 				<Button color="warning" size="lg" block  onClick={() => this.pwm()}>PWM</Button>
 				<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('allOff', ["0"])}>All off</Button>
