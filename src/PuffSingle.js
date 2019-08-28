@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import socketIOClient from 'socket.io-client';
 import moment from 'moment';
 import { Container, Col, Button, Row, Badge } from 'reactstrap';
-import Slider, { Range } from 'rc-slider';
+import Slider from 'rc-slider';
 
 import "./PuffSingle.css";
 import 'rc-slider/assets/index.css';
@@ -11,6 +11,7 @@ class PuffSingle extends Component {
 	state = {
 	  response: false,
 	  socket: null,
+	  channel: 0,
 	  value: 0
 	}
 
@@ -40,7 +41,7 @@ class PuffSingle extends Component {
 	}
 
 	pwm() {
-	  this.state.socket.emit('pwm', 'lol', 'lal');
+	  this.state.socket.emit('pwm', this.state.channel, this.state.value);
 	}
 
 	// oscSend(address, value) {
@@ -88,8 +89,13 @@ class PuffSingle extends Component {
 						</Col>
 					</Row>
 				</Container>
-				<div>
-					<Slider onSliderChange={(value) => this.setState({value})} />
+				<div style={{height: '200px', textAlign: 'center '}}>
+				  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => {this.setState({value}); this.pwm.bind(this)}} />
+				  <br />
+				  <label>Channel: </label>
+				  <input type="number" value={this.state.channel} onChange={(e) => {console.log(e); this.setState({channel: e.target.value}); this.pwm.bind(this)}} style={{width: '50px', marginLeft: '10px'}} />
+				  <br />
+				  <label>Value: </label> {this.state.value / 1000}
 				</div>
 				<Button color="warning" size="lg" block  onClick={() => this.pwm()}>PWM</Button>
 				<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('allOff', ["0"])}>All off</Button>

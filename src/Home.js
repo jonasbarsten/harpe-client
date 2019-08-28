@@ -13,7 +13,7 @@ const socket = socketIOClient(endpoint);
 
 class Home extends Component {
   state = {
-    response: false
+    response: false,
   }
 
   // runLedCommand(functionName, args) {
