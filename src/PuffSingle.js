@@ -55,7 +55,7 @@ class PuffSingle extends Component {
 	solenoid() {
 		console.log('Boom');
 		const channel = this.state.channel;
-		this.state.socket.emit('pwm', channel, this.state.amount);
+		this.state.socket.emit('pwm', channel, this.state.amount * 1000);
 		setTimeout(() => {
 			this.state.socket.emit('pwm', channel, 0);
 		}, this.state.duration);
@@ -111,13 +111,15 @@ class PuffSingle extends Component {
 						<Col>
 							<div style={{textAlign: 'center'}}>
 								<h2>HIT</h2>
-								<Button color="primary" size="lg" block onClick={() => this.solenoid()}>BOOM</Button>
+								<div style={{marginTop: '45px', textAlign: 'center', width: '100px'}}>
+									<Button color="primary" size="lg" block onClick={() => this.solenoid()}>BOOM</Button>
+								</div>
 								<br />
 								<label>Duration (ms): </label>
-								<input type="number" min="0" value={this.state.duration} onChange={(e) => this.setState({duration: e.target.value})} style={{width: '50px'}} />
+								<input type="number" min="0" value={this.state.duration} onChange={(e) => this.setState({duration: e.target.value})} style={{width: '100px'}} />
 								<br />
 								<label>Amount (0-1): </label>
-								<input type="number" step="0.01" min="0" max="1" value={this.state.amount} onChange={(e) => this.setState({amount: e.target.value})} style={{width: '50px'}} />
+								<input type="number" step="0.01" min="0" max="1" value={this.state.amount} onChange={(e) => this.setState({amount: e.target.value})} style={{width: '100px'}} />
 							</div>
 						</Col>
 					</Row>
