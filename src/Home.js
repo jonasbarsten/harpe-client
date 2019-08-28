@@ -42,6 +42,13 @@ class Home extends Component {
     }
 
     const numberOfNeighbours = response.neighbours.length;
+    const currentPuff = {
+      id: response.id,
+      lastMidi: response.lastMidi,
+      lastOsc: response.lastOsc,
+      localIp: response.ip,
+      hostName: response.hostName
+    };
 
     return (
       <div className="Home">
@@ -53,6 +60,7 @@ class Home extends Component {
           </Row>
           <br />
           <CardDeck>
+            <PuffCard key={currentPuff.ip} puff={currentPuff} childProps={this.props}/>
           {
             response.neighbours.map((puff) => {
               return (
