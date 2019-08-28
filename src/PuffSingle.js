@@ -28,9 +28,9 @@ class PuffSingle extends Component {
 		this.state.socket.disconnect();
 	}
 
-	runLedCommand(functionName, args) {
-	  this.state.socket.emit('runFunction', functionName, args);
-	}
+	// runLedCommand(functionName, args) {
+	//   this.state.socket.emit('runFunction', functionName, args);
+	// }
 
 	restartPuff() {
 	  this.state.socket.emit('restart');
@@ -45,33 +45,20 @@ class PuffSingle extends Component {
 	}
 
 	allOff() {
-
-		console.log('All off')
-
 		for (let i = 0; i <= 16; i++) {
 			this.state.socket.emit('pwm', i, 0);
 		}
-
-	  // this.state.socket.emit('pwm', this.state.channel, value);
 	}
-
-	// oscSend(address, value) {
-	//   socket.emit('oscSend', address, value);
-	// }
 
 	render () {
 
-		const { response, value } = this.state;
-
-		console.log(value);
+		const { response } = this.state;
 
 		if (!response) {
 			return (
 				<div>Loading ...</div>
 			);
 		};
-
-		console.log(response);
 
 		const hostName = response.hostName;
 		let lastSeen = '';
@@ -100,19 +87,21 @@ class PuffSingle extends Component {
 						</Col>
 					</Row>
 				</Container>
-				<div style={{height: '200px', textAlign: 'center '}}>
+				<div style={{height: '200px', textAlign: 'center'}}>
+					<h2>PWM</h2>
+					<br />
 				  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value)} />
 				  <br />
 				</div>
-				<div>
+				<div style={{textAlign: 'center', marginTop: '10px', marginBottom: '10px'}}>
 					<label>Channel: </label>
 					<input type="number" value={this.state.channel} onChange={(e) => this.setState({channel: e.target.value})} style={{width: '50px', marginLeft: '10px'}} />
 				</div>
 				<div>
 
-					<Button color="warning" size="lg" block  onClick={() => this.allOff()}>All off</Button>
-					<Button color="danger" size="lg" block  onClick={() => this.restartPuff()}>Restart puff</Button>
-					<Button color="primary" size="lg" block  onClick={() => this.updatePuff()}>Update puff</Button>
+					<Button color="warning" size="lg" block  onClick={() => this.allOff()}>All PWM off</Button>
+					<Button color="danger" size="lg" block  onClick={() => this.restartPuff()}>Restart harp</Button>
+					<Button color="primary" size="lg" block  onClick={() => this.updatePuff()}>Update harp</Button>
 				</div>
 			</div>
 		);

@@ -9,7 +9,7 @@ const PuffCard = (props) => {
   const ip = props.puff.ip;
   const lastSeen = moment(props.puff.lastSeen).format('HH:mm:ss');
   const monitorUrl = `http://${ip}:8888`;
-  const olaUrl = `http://${ip}:9090`;
+  // const olaUrl = `http://${ip}:9090`;
 
   return (
     <Col sm="6">
