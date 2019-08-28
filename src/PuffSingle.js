@@ -36,6 +36,10 @@ class PuffSingle extends Component {
 	  this.state.socket.emit('update');
 	}
 
+	pwm() {
+	  this.state.socket.emit('pwm', 'lol', 'lal');
+	}
+
 	// oscSend(address, value) {
 	//   socket.emit('oscSend', address, value);
 	// }
@@ -79,7 +83,7 @@ class PuffSingle extends Component {
 						</Col>
 					</Row>
 				</Container>
-				<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('allOn', ["0"])}>All on</Button>
+				<Button color="warning" size="lg" block  onClick={() => this.pwm()}>PWM</Button>
 				<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('allOff', ["0"])}>All off</Button>
 				<Button color="danger" size="lg" block  onClick={() => this.restartPuff()}>Restart puff</Button>
 				<Button color="primary" size="lg" block  onClick={() => this.updatePuff()}>Update puff</Button>

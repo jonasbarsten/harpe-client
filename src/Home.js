@@ -16,9 +16,9 @@ class Home extends Component {
     response: false
   }
 
-  runLedCommand(functionName, args) {
-    socket.emit('runFunction', functionName, args);
-  }
+  // runLedCommand(functionName, args) {
+  //   socket.emit('runFunction', functionName, args);
+  // }
 
   restartServer() {
     socket.emit('restart');
