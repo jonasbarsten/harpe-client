@@ -44,6 +44,17 @@ class PuffSingle extends Component {
 	  this.state.socket.emit('pwm', this.state.channel, value);
 	}
 
+	allOff() {
+
+		console.log('All off')
+
+		for (let i = 0; i <= 16; i++) {
+			this.state.socket.emit('pwm', i, 0);
+		}
+
+	  // this.state.socket.emit('pwm', this.state.channel, value);
+	}
+
 	// oscSend(address, value) {
 	//   socket.emit('oscSend', address, value);
 	// }
@@ -98,8 +109,8 @@ class PuffSingle extends Component {
 					<input type="number" value={this.state.channel} onChange={(e) => this.setState({channel: e.target.value})} style={{width: '50px', marginLeft: '10px'}} />
 				</div>
 				<div>
-					<Button color="warning" size="lg" block  onClick={() => this.pwm()}>PWM</Button>
-					<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('allOff', ["0"])}>All off</Button>
+
+					<Button color="warning" size="lg" block  onClick={() => this.allOff()}>All off</Button>
 					<Button color="danger" size="lg" block  onClick={() => this.restartPuff()}>Restart puff</Button>
 					<Button color="primary" size="lg" block  onClick={() => this.updatePuff()}>Update puff</Button>
 				</div>
