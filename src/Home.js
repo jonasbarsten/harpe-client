@@ -41,6 +41,8 @@ class Home extends Component {
       );
     }
 
+    console.log(response);
+
     const numberOfNeighbours = response.neighbours.length;
     const currentPuff = {
       id: response.id,
