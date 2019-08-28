@@ -16,9 +16,9 @@ const PuffCard = (props) => {
       <Card body className="text-center">
         <CardTitle>ID: {id}</CardTitle>
         <CardText>Last seen <Badge color="primary">{lastSeen}</Badge></CardText>
+        <CardText>IP <Badge color="success">{ip}</Badge></CardText>
         <Button style={{marginBottom: "8px"}} color="primary" onClick={() => props.childProps.history.push(`/puff/${ip}`)}>Config / test</Button>
-        <Button style={{marginBottom: "8px"}} color="primary" onClick={() => window.location = monitorUrl}>Monitor</Button>
-        <Button color="primary" onClick={() => window.location = olaUrl}>OLA</Button>
+        <Button style={{marginBottom: "8px"}} color="primary" onClick={() => window.location = monitorUrl}>System</Button>
       </Card>
     </Col>
   );
