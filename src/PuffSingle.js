@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import socketIOClient from 'socket.io-client';
 import moment from 'moment';
 import { Container, Col, Button, Row, Badge } from 'reactstrap';
+import Slider, { Range } from 'rc-slider';
 
 import "./PuffSingle.css";
+import 'rc-slider/assets/index.css';
 
 class PuffSingle extends Component {
 	state = {
@@ -83,6 +85,10 @@ class PuffSingle extends Component {
 						</Col>
 					</Row>
 				</Container>
+				<div>
+					<Slider />
+					<Range />
+				</div>
 				<Button color="warning" size="lg" block  onClick={() => this.pwm()}>PWM</Button>
 				<Button color="warning" size="lg" block  onClick={() => this.runLedCommand('allOff', ["0"])}>All off</Button>
 				<Button color="danger" size="lg" block  onClick={() => this.restartPuff()}>Restart puff</Button>
