@@ -86,23 +86,36 @@ class PuffSingle extends Component {
 							<div className="text-right">Last seen <Badge color="primary">{lastSeen}</Badge></div>
 						</Col>
 					</Row>
+					<Row>
+						<Col>
+							<div style={{textAlign: 'center'}}>
+								<h2>FADE</h2>
+							</div>
+							<div style={{height: '200px', textAlign: 'center'}}>
+							  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value)} />
+							  <br />
+							</div>
+							<div style={{textAlign: 'center', marginTop: '10px', marginBottom: '10px'}}>
+								<label>Channel: </label>
+								<input type="number" value={this.state.channel} onChange={(e) => this.setState({channel: e.target.value})} style={{width: '50px', marginLeft: '10px'}} />
+							</div>
+						</Col>
+						<Col>
+							<div style={{textAlign: 'center'}}>
+								<h2>HIT</h2>
+							</div>
+						</Col>
+					</Row>
+					<Row>
+						<Col>
+							<div>
+								<Button color="warning" size="lg" block  onClick={() => this.allOff()}>All PWM off</Button>
+								<Button color="danger" size="lg" block  onClick={() => this.restartPuff()}>Restart harp</Button>
+								<Button color="primary" size="lg" block  onClick={() => this.updatePuff()}>Update harp</Button>
+							</div>
+						</Col>
+					</Row>
 				</Container>
-				<div style={{height: '200px', textAlign: 'center'}}>
-					<h2>PWM</h2>
-					<br />
-				  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value)} />
-				  <br />
-				</div>
-				<div style={{textAlign: 'center', marginTop: '10px', marginBottom: '10px'}}>
-					<label>Channel: </label>
-					<input type="number" value={this.state.channel} onChange={(e) => this.setState({channel: e.target.value})} style={{width: '50px', marginLeft: '10px'}} />
-				</div>
-				<div>
-
-					<Button color="warning" size="lg" block  onClick={() => this.allOff()}>All PWM off</Button>
-					<Button color="danger" size="lg" block  onClick={() => this.restartPuff()}>Restart harp</Button>
-					<Button color="primary" size="lg" block  onClick={() => this.updatePuff()}>Update harp</Button>
-				</div>
 			</div>
 		);
 	}
