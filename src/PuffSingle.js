@@ -114,7 +114,7 @@ class PuffSingle extends Component {
 							<div style={{textAlign: 'center'}}>
 								<h2>HIT</h2>
 								<div style={{margin: '45px auto 0 auto', width: '100px'}}>
-									<Button color="primary" size="lg" block onClick={() => this.solenoid()}>BOOM</Button>
+									<Button color="success" size="lg" block onClick={() => this.solenoid()}>BOOM</Button>
 								</div>
 								<br />
 								<label>Duration (ms): </label>
