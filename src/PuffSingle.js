@@ -13,7 +13,7 @@ class PuffSingle extends Component {
 	  socket: null,
 	  channel: 0,
 	  value: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00],
-	  solenoidDuration: [0, 0, 0],
+	  solenoidDuration: [100, 100, 100],
 	  duration: 100,
 	  amount: 1
 	}
@@ -69,8 +69,7 @@ class PuffSingle extends Component {
 		this.state.socket.emit('solenoid', number, 1);
 		setTimeout(() => {
 			this.state.socket.emit('solenoid', number, 0);
-		}, 500);
-
+		}, this.state.solenoidDuration[number]);
 	}
 
 	render () {
