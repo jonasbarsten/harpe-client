@@ -12,7 +12,7 @@ class PuffSingle extends Component {
 	  response: false,
 	  socket: null,
 	  channel: 0,
-	  value: 0.00,
+	  value: [0.00, 0.00, 0.00, 0.00, 0.00, 0.00],
 	  duration: 100,
 	  amount: 1
 	}
@@ -42,8 +42,11 @@ class PuffSingle extends Component {
 	  this.state.socket.emit('update');
 	}
 
-	pwm(value) {
-		this.setState({value: value / 1000});
+	pwm(value, channel) {
+		// this.setState({'value[channel]': value / 1000});
+		let oldValueArray = this.state.value;
+		oldValueArray[channel] = value;
+		this.setState({value: oldValueArray});
 	  this.state.socket.emit('pwm', this.state.channel, value);
 	}
 
@@ -86,6 +89,8 @@ class PuffSingle extends Component {
 			});
 		};
 
+		// const controller = 
+
 		return (
 			<div className="PuffSingle">
 				<Container>
@@ -105,14 +110,68 @@ class PuffSingle extends Component {
 					</Row>
 					<Row style={{marginTop: '20px'}}>
 						<Col>
-							<div style={{textAlign: 'center'}}>
-								<h2>FADE</h2>
-							</div>
-							<div style={{height: '200px', textAlign: 'center'}}>
-							  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value)} />
-							  <br />
-							  <p>{this.state.value}</p>
-							</div>
+							<Row>
+								<Col>
+									<div style={{textAlign: 'center'}}>
+										<h2>1</h2>
+									</div>
+									<div style={{height: '200px', textAlign: 'center'}}>
+									  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value, 0)} />
+									  <br />
+									  <p>{this.state.value}</p>
+									</div>
+								</Col>
+								<Col>
+									<div style={{textAlign: 'center'}}>
+										<h2>2</h2>
+									</div>
+									<div style={{height: '200px', textAlign: 'center'}}>
+									  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value, 1)} />
+									  <br />
+									  <p>{this.state.value}</p>
+									</div>
+								</Col>
+								<Col>
+									<div style={{textAlign: 'center'}}>
+										<h2>3</h2>
+									</div>
+									<div style={{height: '200px', textAlign: 'center'}}>
+									  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value, 2)} />
+									  <br />
+									  <p>{this.state.value}</p>
+									</div>
+								</Col>
+								<Col>
+									<div style={{textAlign: 'center'}}>
+										<h2>4</h2>
+									</div>
+									<div style={{height: '200px', textAlign: 'center'}}>
+									  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value, 3)} />
+									  <br />
+									  <p>{this.state.value}</p>
+									</div>
+								</Col>
+								<Col>
+									<div style={{textAlign: 'center'}}>
+										<h2>5</h2>
+									</div>
+									<div style={{height: '200px', textAlign: 'center'}}>
+									  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value, 4)} />
+									  <br />
+									  <p>{this.state.value}</p>
+									</div>
+								</Col>
+								<Col>
+									<div style={{textAlign: 'center'}}>
+										<h2>6</h2>
+									</div>
+									<div style={{height: '200px', textAlign: 'center'}}>
+									  <Slider style={{margin: 'auto auto'}} min={0} max={1000} vertical={true} onChange={(value) => this.pwm(value, 5)} />
+									  <br />
+									  <p>{this.state.value}</p>
+									</div>
+								</Col>
+							</Row>
 						</Col>
 						<Col>
 							<div style={{textAlign: 'center'}}>
