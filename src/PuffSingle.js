@@ -74,6 +74,7 @@ class PuffSingle extends Component {
 		};
 
 		const hostName = response.hostName;
+		const type = response.type;
 		let lastSeen = '';
 
 		if (response.neighbours) {
@@ -94,6 +95,9 @@ class PuffSingle extends Component {
 						</Col>
 						<Col>
 							<div className="text-right"><Badge color="success">{hostName}</Badge></div>
+						</Col>
+						<Col>
+							<div className="text-right"><Badge color="danger">{type}</Badge></div>
 						</Col>
 						<Col>
 							<div className="text-right">Last seen <Badge color="primary">{lastSeen}</Badge></div>
