@@ -56,13 +56,20 @@ class PuffSingle extends Component {
 		}
 	}
 
-	solenoid() {
+	pwmHit() {
 		console.log('Boom');
 		const channel = this.state.channel;
 		this.state.socket.emit('pwm', channel, this.state.amount * 1000);
 		setTimeout(() => {
 			this.state.socket.emit('pwm', channel, 0);
 		}, this.state.duration);
+	}
+
+	solenoidHit(number) {
+		this.state.socket.emit('solenoid', number, 1);
+		setTimeout(() => {
+			this.state.socket.emit('solenoid', number, 0);
+		}, 500);
 
 	}
 
@@ -131,7 +138,7 @@ class PuffSingle extends Component {
 						<div style={{textAlign: 'center'}}>
 							<h2>HIT</h2>
 							<div style={{margin: '45px auto 0 auto', width: '100px'}}>
-								<Button color="success" size="lg" block onClick={() => this.solenoid()}>BOOM</Button>
+								<Button color="success" size="lg" block onClick={() => this.pwmHit()}>BOOM</Button>
 							</div>
 							<br />
 							<label>Duration (ms): </label>
@@ -153,7 +160,7 @@ class PuffSingle extends Component {
 							<Col key={solenoid} style={{textAlign: 'center'}}>
 								<Row>
 									<Col>
-										<Button color="success" onClick={() => this.state.socket.emit('solenoid', solenoid, this.state.solenoidDuration[solenoid])}>{solenoid}</Button>
+										<Button color="success" onClick={() => this.solenoidHit(solenoid)}>{solenoid}</Button>
 									</Col>
 								</Row>
 								<Row style={{marginTop: '15px'}}>
