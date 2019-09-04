@@ -7,6 +7,7 @@ const PuffCard = (props) => {
 
   const id = props.puff.id;
   const ip = props.puff.ip;
+  const type = props.puff.type;
   const lastSeen = moment(props.puff.lastSeen).format('HH:mm:ss');
   const monitorUrl = `http://${ip}:8888`;
   // const olaUrl = `http://${ip}:9090`;
@@ -17,6 +18,7 @@ const PuffCard = (props) => {
         <CardTitle>ID: {id}</CardTitle>
         <CardText>Last seen <Badge color="primary">{lastSeen}</Badge></CardText>
         <CardText>IP <Badge color="success">{ip}</Badge></CardText>
+        <CardText>Type <Badge color="danger">{type}</Badge></CardText>
         <Button style={{marginBottom: "8px"}} color="primary" onClick={() => props.childProps.history.push(`/puff/${ip}`)}>Config / test</Button>
         <Button style={{marginBottom: "8px"}} color="primary" onClick={() => window.location = monitorUrl}>System</Button>
       </Card>
