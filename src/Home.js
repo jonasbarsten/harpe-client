@@ -3,7 +3,6 @@ import socketIOClient from 'socket.io-client';
 import { CardDeck, Button, Row, Col, Container } from 'reactstrap';
 
 import PuffCard from './PuffCard.js';
-
 import './Home.css';
 
 // For some reason, cannot use 127.0.0.1
@@ -15,10 +14,6 @@ class Home extends Component {
   state = {
     response: false,
   }
-
-  // runLedCommand(functionName, args) {
-  //   socket.emit('runFunction', functionName, args);
-  // }
 
   restartServer() {
     socket.emit('restart');
@@ -41,7 +36,13 @@ class Home extends Component {
       );
     }
 
-    console.log(response);
+    response.neighbours.sort((a, b) => {
+      const keyA = a.id;
+      const keyB = b.id;
+      if(keyA < keyB) return -1;
+      if(keyA > keyB) return 1;
+      return 0;
+    });
 
     const numberOfNeighbours = response.neighbours.length;
 
