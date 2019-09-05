@@ -37,8 +37,8 @@ class Home extends Component {
     }
 
     const sortedNeighbours = response.neighbours.sort((a, b) => {
-      const keyA = a.id;
-      const keyB = b.id;
+      const keyA = Number(a.id);
+      const keyB = Number(b.id);
       if(keyA < keyB) return -1;
       if(keyA > keyB) return 1;
       return 0;
