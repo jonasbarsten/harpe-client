@@ -36,7 +36,7 @@ class Home extends Component {
       );
     }
 
-    response.neighbours.sort((a, b) => {
+    const sortedNeighbours = response.neighbours.sort((a, b) => {
       const keyA = a.id;
       const keyB = b.id;
       if(keyA < keyB) return -1;
@@ -44,7 +44,7 @@ class Home extends Component {
       return 0;
     });
 
-    const numberOfNeighbours = response.neighbours.length;
+    const numberOfNeighbours = sortedNeighbours.length;
 
     return (
       <div className="Home">
@@ -57,7 +57,7 @@ class Home extends Component {
           <br />
           <CardDeck>
           {
-            response.neighbours.map((puff) => {
+            sortedNeighbours.map((puff) => {
               return (
                 <PuffCard key={puff.ip} puff={puff} childProps={this.props}/>
               );
