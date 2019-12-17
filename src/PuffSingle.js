@@ -47,7 +47,8 @@ class PuffSingle extends Component {
 		let oldValueArray = this.state.value;
 		oldValueArray[channel] = value / 1000;
 		this.setState({value: oldValueArray});
-	  this.state.socket.emit('pwm', this.state.channel, value);
+	  // this.state.socket.emit('pwm', this.state.channel, value);
+	  this.state.socket.emit('pwm', channel, value);
 	}
 
 	allOff() {
